@@ -56,22 +56,22 @@ export default function Hero() {
             className="flex flex-wrap gap-3.5"
           >
             <motion.button
-              onClick={() => scrollToSection("work")}
+              onClick={() => scrollToSection("contact")}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="rounded bg-accent px-6 py-3 text-sm font-semibold text-white hover:bg-accent-dark transition-all cursor-none shadow-sm"
               data-hover
             >
-              View My Work
+              Get a Website
             </motion.button>
             <motion.button
-              onClick={() => scrollToSection("contact")}
+              onClick={() => scrollToSection("work")}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="rounded border border-border bg-transparent px-6 py-3 text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
               data-hover
             >
-              Get a Website
+              View My Work
             </motion.button>
           </motion.div>
         </div>

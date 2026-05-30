@@ -10,6 +10,7 @@ export default function Work() {
   const { projects } = useProjects();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedType, setSelectedType] = useState("All");
+  const [showAll, setShowAll] = useState(false);
 
   // Filters logic: both must match (AND condition) unless "All" is active
   const filteredProjects = projects.filter((project) => {
@@ -20,6 +21,9 @@ export default function Work() {
     return categoryMatch && typeMatch;
   });
 
+  // Show only first 4 projects if not showing all
+  const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 4);
+
   return (
     <section id="work" className="w-full py-16 border-t border-border/10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -29,13 +33,25 @@ export default function Work() {
           <h2 className="text-2xl font-semibold text-text-primary">Recent Work</h2>
         </div>
 
-        {/* Filter Bar Component */}
-        <FilterBar
-          selectedCategory={selectedCategory}
-          setSelectedCategory={setSelectedCategory}
-          selectedType={selectedType}
-          setSelectedType={setSelectedType}
-        />
+        {/* Filter Bar Component - Only show when showing all */}
+        <AnimatePresence>
+          {showAll && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="mb-6"
+            >
+              <FilterBar
+                selectedCategory={selectedCategory}
+                setSelectedCategory={setSelectedCategory}
+                selectedType={selectedType}
+                setSelectedType={setSelectedType}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Projects Grid with AnimatePresence */}
         <motion.div
@@ -50,7 +66,7 @@ export default function Work() {
             className="grid grid-cols-1 gap-3.5 sm:grid-cols-2"
           >
             <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project) => (
+              {displayedProjects.map((project) => (
                 <motion.div
                   key={project.id}
                   layout
@@ -67,7 +83,7 @@ export default function Work() {
           </motion.div>
 
           {/* Empty state */}
-          {filteredProjects.length === 0 && (
+          {displayedProjects.length === 0 && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -76,6 +92,24 @@ export default function Work() {
               <span className="text-[11px] text-text-muted">
                 No projects match the selected filters.
               </span>
+            </motion.div>
+          )}
+
+          {/* Show More Button */}
+          {!showAll && filteredProjects.length > 4 && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              className="flex justify-center mt-8"
+            >
+              <button
+                onClick={() => setShowAll(true)}
+                className="rounded border border-border bg-transparent px-6 py-3 text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
+                data-hover
+              >
+                Show More Projects
+              </button>
             </motion.div>
           )}
         </motion.div>

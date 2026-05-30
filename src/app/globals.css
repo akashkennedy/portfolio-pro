@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  --bg-base: #faf9ff;
+  --bg-surface: #ffffff;
+  --bg-surface-2: #f5f3fd;
+  --border: #e4e0f4;
+  --accent: #534AB7;
+  --accent-dark: #3C3489;
+  --accent-muted: #7F77DD;
+  --accent-bg: #EEEDFE;
+  --text-primary: #1a1530;
+  --text-secondary: #8880a8;
+  --text-muted: #8880a8;
+}
+
+.dark {
+  --bg-base: #111016;
+  --bg-surface: #18151f;
+  --bg-surface-2: #1e1a2a;
+  --border: #2a2535;
+  --accent: #7F77DD;
+  --accent-dark: #534AB7;
+  --accent-muted: #AFA9EC;
+  --accent-bg: #2a2040;
+  --text-primary: #e0daf5;
+  --text-secondary: #9d97c0;
+  --text-muted: #5a5270;
+}
+
+@theme {
+  --color-bg-base: var(--bg-base);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-surface-2: var(--bg-surface-2);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+  --color-accent-muted: var(--accent-muted);
+  --color-accent-bg: var(--accent-bg);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hide OS cursor on desktop devices with a mouse */
+@media (pointer: fine) {
+  html, body, a, button, [data-hover] {
+    cursor: none !important;
+  }
+}
+
+/* Base style resets and scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-muted);
+}
+
+/* Simple shake animation for incorrect password in admin dashboard */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}

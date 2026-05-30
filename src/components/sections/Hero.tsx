@@ -53,7 +53,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-wrap gap-3.5 mb-10 w-full sm:w-auto"
+            className="flex flex-wrap gap-3.5"
           >
             <motion.button
               onClick={() => scrollToSection("work")}
@@ -73,42 +73,6 @@ export default function Hero() {
             >
               Get a Website
             </motion.button>
-          </motion.div>
-
-          {/* Trust Indicators */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="grid grid-cols-2 gap-3 mb-8 w-full max-w-md"
-          >
-            {[
-              { icon: Smartphone, text: "Mobile Friendly" },
-              { icon: Zap, text: "Fast Loading" },
-              { icon: Sparkles, text: "Modern Design" },
-              { icon: Target, text: "Lead Focused" },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
-                className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border bg-surface"
-              >
-                <item.icon className="w-4 h-4 text-accent" />
-                <span className="text-xs font-medium text-text-primary">{item.text}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Target Businesses */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="text-sm text-text-muted"
-          >
-            <span className="font-medium text-text-secondary">Perfect for:</span> Gyms • Salons • Restaurants • Clinics • Local Businesses
           </motion.div>
         </div>
 

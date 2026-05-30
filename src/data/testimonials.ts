@@ -35,4 +35,32 @@ export const staticTestimonials: Testimonial[] = [
     business: "Gym Owner",
     initials: "AC",
   },
+  {
+    id: 5,
+    quote: "The website he created for our clinic has made booking appointments so much easier. Patients love how simple it is to use.",
+    name: "Anonymous Client",
+    business: "Clinic Owner",
+    initials: "AC",
+  },
+  {
+    id: 6,
+    quote: "We needed a quick turnaround for our event website, and Akash delivered beyond expectations. The design is stunning.",
+    name: "Anonymous Client",
+    business: "Event Planner",
+    initials: "AC",
+  },
+  {
+    id: 7,
+    quote: "Professional, responsive, and truly talented. Our new website has helped us attract more clients than ever before.",
+    name: "Anonymous Client",
+    business: "Service Business",
+    initials: "AC",
+  },
+  {
+    id: 8,
+    quote: "The attention to detail and commitment to quality is remarkable. Our website stands out from competitors now.",
+    name: "Anonymous Client",
+    business: "Startup Founder",
+    initials: "AC",
+  },
 ];

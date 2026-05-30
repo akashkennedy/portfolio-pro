@@ -7,9 +7,10 @@ import { Project } from "@/data/projects";
 
 interface ProjectCardProps {
   project: Project;
+  onClick?: () => void;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project, onClick }: ProjectCardProps) {
   const [imgError, setImgError] = useState(false);
 
   // Dynamic icon based on category
@@ -28,7 +29,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <div
-      className={`relative flex flex-col overflow-hidden rounded-lg bg-surface transition-all duration-300 hover:-translate-y-0.5 ${
+      onClick={onClick}
+      className={`relative flex flex-col overflow-hidden rounded-lg bg-surface transition-all duration-300 hover:-translate-y-0.5 cursor-pointer ${
         project.featured
           ? "border border-accent-muted/40 shadow-sm"
           : "border-[0.5px] border-border"
@@ -71,14 +73,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {project.description}
         </p>
         <div className="mt-auto">
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center text-xs font-semibold text-accent hover:text-accent-dark transition-colors cursor-none"
-          >
+          <span className="inline-flex items-center text-xs font-semibold text-accent hover:text-accent-dark transition-colors cursor-none">
             View Project <span className="ml-1">→</span>
-          </a>
+          </span>
         </div>
       </div>
     </div>

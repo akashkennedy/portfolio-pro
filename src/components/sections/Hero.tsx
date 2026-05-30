@@ -1,26 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
+import { Smartphone, Zap, Target, Sparkles } from "lucide-react";
 
 export default function Hero() {
-  const [headlineText, setHeadlineText] = useState("");
-  const fullHeadline = "Your business deserves a great website";
-
-  // Quick typewriter effect for headline on mount
-  useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      setHeadlineText(fullHeadline.slice(0, index + 1));
-      index++;
-      if (index >= fullHeadline.length) {
-        clearInterval(interval);
-      }
-    }, 45);
-
-    return () => clearInterval(interval);
-  }, []);
-
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -29,19 +13,19 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[90vh] w-full items-center justify-center py-20"
+      className="relative flex min-h-screen w-full items-center justify-center py-20"
     >
-      <div className="mx-auto grid max-w-7xl w-full grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_auto] items-center">
+      <div className="mx-auto grid max-w-7xl w-full grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-2 items-center">
         {/* Left Column - Content */}
         <div className="flex flex-col items-start text-left">
-          {/* Eyebrow */}
+          {/* Badge */}
           <motion.span
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0 }}
-            className="text-sm font-semibold uppercase tracking-wider text-accent mb-4"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-bg text-accent text-sm font-semibold mb-6"
           >
-            WEB DESIGN & DEVELOPMENT
+            🚀 Helping Local Businesses Build Their Online Presence
           </motion.span>
 
           {/* Headline */}
@@ -49,25 +33,19 @@ export default function Hero() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl font-semibold tracking-tight text-text-primary md:text-5xl leading-tight mb-6 min-h-[100px] sm:min-h-0 md:min-h-[120px]"
+            className="text-4xl font-semibold tracking-tight text-text-primary md:text-5xl lg:text-6xl leading-tight mb-6"
           >
-            Your business deserves <br className="hidden sm:inline" />
-            <span className="relative inline-block mt-1">
-              a great website
-              {/* Underline decoration */}
-              <span className="absolute left-0 bottom-[-4px] h-[3px] w-full bg-accent rounded-full opacity-80" />
-            </span>
+            Modern Landing Pages That Help Local Businesses Get More Customers
           </motion.h1>
 
-          {/* Subheading */}
+          {/* Subheadline */}
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="max-w-xl text-base leading-[1.8] text-text-secondary mb-8"
           >
-            I help local businesses get online with fast, professional websites
-            that bring in customers — not just look good.
+            Fast, mobile-friendly websites designed to build trust, showcase your services, and turn visitors into paying customers.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -77,66 +55,168 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-wrap gap-3.5 mb-10 w-full sm:w-auto"
           >
-            <button
+            <motion.button
               onClick={() => scrollToSection("work")}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className="rounded bg-accent px-6 py-3 text-sm font-semibold text-white hover:bg-accent-dark transition-all cursor-none shadow-sm"
               data-hover
             >
-              See my work
-            </button>
-            <button
+              View My Work
+            </motion.button>
+            <motion.button
               onClick={() => scrollToSection("contact")}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className="rounded border border-border bg-transparent px-6 py-3 text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
               data-hover
             >
-              Let&apos;s talk
-            </button>
+              Get a Website
+            </motion.button>
           </motion.div>
 
-          {/* Trust Bar */}
+          {/* Trust Indicators */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex items-center gap-10 border-t border-border pt-6 w-full max-w-lg"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="grid grid-cols-2 gap-3 mb-8 w-full max-w-md"
           >
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold text-accent">6+</span>
-              <span className="text-sm text-text-muted">Projects Delivered</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold text-accent">Fast</span>
-              <span className="text-sm text-text-muted">Turnaround</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold text-accent">100%</span>
-              <span className="text-sm text-text-muted">Satisfaction</span>
-            </div>
+            {[
+              { icon: Smartphone, text: "Mobile Friendly" },
+              { icon: Zap, text: "Fast Loading" },
+              { icon: Sparkles, text: "Modern Design" },
+              { icon: Target, text: "Lead Focused" },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border bg-surface"
+              >
+                <item.icon className="w-4 h-4 text-accent" />
+                <span className="text-xs font-medium text-text-primary">{item.text}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Target Businesses */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="text-sm text-text-muted"
+          >
+            <span className="font-medium text-text-secondary">Perfect for:</span> Gyms • Salons • Restaurants • Clinics • Local Businesses
           </motion.div>
         </div>
 
-        {/* Right Column - Avatar */}
+        {/* Right Column - Browser Mockup */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex justify-center lg:justify-end"
+          className="flex justify-center lg:justify-end relative"
         >
-          {/* Floating Avatar Container */}
+          {/* Browser Window Mockup */}
           <motion.div
             animate={{
-              y: [0, -6, 0],
+              y: [0, -8, 0],
             }}
             transition={{
-              duration: 3,
+              duration: 4,
               ease: "easeInOut",
               repeat: Infinity,
             }}
-            className="flex h-24 w-24 items-center justify-center rounded-2xl border border-accent/30 bg-accent-bg shadow-sm"
+            className="relative w-full max-w-md"
           >
-            <span className="text-[26px] font-medium text-accent tracking-tighter">
-              AK
-            </span>
+            {/* Browser Window */}
+            <div className="bg-surface border-2 border-border rounded-lg shadow-2xl overflow-hidden">
+              {/* Browser Header */}
+              <div className="flex items-center gap-2 px-4 py-3 bg-surface border-b border-border">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-red-400" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                  <div className="w-3 h-3 rounded-full bg-green-400" />
+                </div>
+                <div className="flex-1 mx-4">
+                  <div className="h-2 bg-border rounded-full max-w-xs mx-auto" />
+                </div>
+              </div>
+              {/* Browser Content */}
+              <div className="p-6 bg-gradient-to-br from-accent/10 to-accent-bg/30">
+                {/* Mock Hero Section */}
+                <div className="bg-white rounded-lg p-6 shadow-sm mb-4">
+                  <div className="h-4 bg-accent/20 rounded w-3/4 mb-3" />
+                  <div className="h-3 bg-border/40 rounded w-full mb-2" />
+                  <div className="h-3 bg-border/40 rounded w-5/6 mb-4" />
+                  <div className="h-8 bg-accent rounded-full w-32" />
+                </div>
+                {/* Mock Features */}
+                <div className="grid grid-cols-3 gap-3">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="bg-white rounded-lg p-3 shadow-sm">
+                      <div className="h-3 bg-border/40 rounded w-full mb-2" />
+                      <div className="h-2 bg-border/30 rounded w-2/3" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Floating Cards */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="absolute -top-4 -left-8 bg-surface border border-border rounded-lg px-4 py-3 shadow-lg"
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="flex items-center gap-2">
+                <Smartphone className="w-4 h-4 text-accent" />
+                <span className="text-xs font-medium text-text-primary">Mobile Optimized</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+              className="absolute -top-4 -right-8 bg-surface border border-border rounded-lg px-4 py-3 shadow-lg"
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="flex items-center gap-2">
+                <Zap className="w-4 h-4 text-accent" />
+                <span className="text-xs font-medium text-text-primary">Fast Loading</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.0 }}
+              className="absolute -bottom-4 -left-4 bg-surface border border-border rounded-lg px-4 py-3 shadow-lg"
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="flex items-center gap-2">
+                <Target className="w-4 h-4 text-accent" />
+                <span className="text-xs font-medium text-text-primary">Lead Generation</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.1 }}
+              className="absolute -bottom-4 -right-4 bg-surface border border-border rounded-lg px-4 py-3 shadow-lg"
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-accent" />
+                <span className="text-xs font-medium text-text-primary">Modern Design</span>
+              </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>

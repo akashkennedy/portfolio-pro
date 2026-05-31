@@ -70,7 +70,7 @@ export default function EditTestimonial({ params }: { params: Promise<{ id: stri
       const { error } = await supabase
         .from("testimonials")
         .update(validatedData)
-        .eq("id", params.id);
+        .eq("id", resolvedParams.id);
 
       if (error) throw error;
 

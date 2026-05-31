@@ -109,7 +109,7 @@ export default function EditProject({ params }: { params: Promise<{ id: string }
       const { error } = await supabase
         .from("projects")
         .update(validatedData)
-        .eq("id", params.id);
+        .eq("id", resolvedParams.id);
 
       if (error) throw error;
 

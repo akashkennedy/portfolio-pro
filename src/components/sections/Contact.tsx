@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { MessageCircle, Camera, Mail } from "lucide-react";
+import { MessageCircle, Camera, Mail, Link } from "lucide-react";
 
 export default function Contact() {
   return (
@@ -24,7 +24,7 @@ export default function Contact() {
         <div className="flex flex-wrap items-center justify-center gap-3.5 max-w-md mx-auto">
           {/* WhatsApp Outline Button */}
           <a
-            href="https://wa.me/919876543210"
+            href="https://wa.me/919843491564"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 rounded border border-border bg-transparent px-5 py-3 text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
@@ -36,7 +36,7 @@ export default function Contact() {
 
           {/* Instagram Outline Button */}
           <a
-            href="https://instagram.com/akashkennedy"
+            href="https://instagram.com/axash_k"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 rounded border border-border bg-transparent px-5 py-3 text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
@@ -46,9 +46,21 @@ export default function Contact() {
             Instagram
           </a>
 
+          {/* LinkedIn Outline Button */}
+          <a
+            href="https://linkedin.com/in/akashkennedy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 rounded border border-border bg-transparent px-5 py-3 text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
+            data-hover
+          >
+            <Link className="h-4 w-4 text-accent" />
+            LinkedIn
+          </a>
+
           {/* Email Me Button (Filled) */}
           <a
-            href="mailto:akashkennedy@email.com"
+            href="mailto:akashkennedy1@gmail.com"
             className="flex items-center gap-2 rounded bg-accent px-6 py-3 text-sm font-semibold text-white hover:bg-accent-dark transition-all cursor-none shadow-sm"
             data-hover
           >

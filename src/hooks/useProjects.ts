@@ -10,11 +10,9 @@ export interface Project {
   client_name: string | null;
   category: "Landing page" | "Business website" | "Redesign";
   short_description: string;
-  full_description: string | null;
   technologies: string[];
   project_url: string | null;
   github_url: string | null;
-  thumbnail_image: string | null;
   gallery_images: string[];
   featured: boolean;
   published: boolean;

@@ -18,11 +18,9 @@ export default function NewProject() {
     client_name: "",
     category: "Landing page",
     short_description: "",
-    full_description: "",
     technologies: [],
     project_url: "",
     github_url: "",
-    thumbnail_image: "",
     gallery_images: [],
     featured: false,
     published: true,
@@ -190,19 +188,6 @@ export default function NewProject() {
                 />
                 {errors.short_description && <p className="text-sm text-red-500 mt-1">{errors.short_description}</p>}
               </div>
-
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">
-                  Full Description
-                </label>
-                <textarea
-                  value={formData.full_description || ""}
-                  onChange={(e) => setFormData({ ...formData, full_description: e.target.value })}
-                  rows={6}
-                  className="w-full px-4 py-2 rounded-lg border border-border bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/50 transition-colors resize-none"
-                  placeholder="Detailed project description"
-                />
-              </div>
             </div>
           </div>
 
@@ -283,23 +268,10 @@ export default function NewProject() {
             </div>
           </div>
 
-          {/* Images */}
+          {/* Gallery Images */}
           <div className="bg-surface border border-border rounded-lg p-6">
-            <h2 className="text-lg font-semibold text-text-primary mb-4">Images</h2>
+            <h2 className="text-lg font-semibold text-text-primary mb-4">Gallery Images (Optional)</h2>
             <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">
-                  Thumbnail Image URL
-                </label>
-                <input
-                  type="text"
-                  value={formData.thumbnail_image || ""}
-                  onChange={(e) => setFormData({ ...formData, thumbnail_image: e.target.value })}
-                  className="w-full px-4 py-2 rounded-lg border border-border bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/50 transition-colors"
-                  placeholder="https://example.com/image.jpg"
-                />
-              </div>
-
               <div>
                 <label className="block text-sm font-medium text-text-secondary mb-2">
                   Gallery Images (comma-separated URLs)

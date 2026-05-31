@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
+import React from "react";
 import { FileText, Globe, Sparkles, Folder } from "lucide-react";
 import type { Project } from "@/hooks/useProjects";
 
@@ -11,8 +10,6 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, onClick }: ProjectCardProps) {
-  const [imgError, setImgError] = useState(false);
-
   // Dynamic icon based on category
   const getCategoryIcon = () => {
     switch (project.category) {
@@ -38,16 +35,14 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
       data-hover
     >
       {/* Image / Icon Area */}
-      <div className="relative h-[120px] w-full overflow-hidden bg-bg-surface-2 flex items-center justify-center">
-        {!imgError && project.thumbnail_image ? (
-          <Image
-            src={project.thumbnail_image}
-            alt={project.title}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover transition-transform duration-500 hover:scale-105"
-            onError={() => setImgError(true)}
-            unoptimized // Bypass next/image optimization issues on static local builds if images are absent
+      <div className="relative h-[200px] w-full overflow-hidden bg-bg-surface-2 flex items-center justify-center">
+        {project.project_url ? (
+          <iframe
+            src={project.project_url}
+            title={project.title}
+            className="w-full h-full border-0"
+            sandbox="allow-same-origin allow-scripts"
+            loading="lazy"
           />
         ) : (
           <div className="flex flex-col items-center justify-center gap-1.5 w-full h-full bg-gradient-to-br from-bg-surface-2 to-accent-bg/40">
@@ -69,14 +64,9 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
         <h3 className="text-sm font-semibold text-text-primary mb-2">
           {project.title}
         </h3>
-        <p className="text-xs font-normal leading-normal text-text-secondary line-clamp-2 mb-4 min-h-[36px]">
+        <p className="text-xs font-normal leading-normal text-text-secondary line-clamp-2">
           {project.short_description}
         </p>
-        <div className="mt-auto">
-          <span className="inline-flex items-center text-xs font-semibold text-accent hover:text-accent-dark transition-colors cursor-none">
-            View Project <span className="ml-1">→</span>
-          </span>
-        </div>
       </div>
     </div>
   );

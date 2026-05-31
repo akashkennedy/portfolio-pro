@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { supabase } from "@/lib/supabase";
@@ -8,7 +8,7 @@ import { projectSchema, type ProjectInput } from "@/lib/validations";
 import { ArrowLeft, Save } from "lucide-react";
 import Link from "next/link";
 
-export default function EditProject({ params }: { params: { id: string } }) {
+export default function EditProject({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -19,28 +19,27 @@ export default function EditProject({ params }: { params: { id: string } }) {
     client_name: "",
     category: "Landing page",
     short_description: "",
-    full_description: "",
     technologies: [],
     project_url: "",
     github_url: "",
-    thumbnail_image: "",
     gallery_images: [],
     featured: false,
     published: true,
     display_order: 0,
   });
   const [techInput, setTechInput] = useState("");
+  const resolvedParams = use(params);
 
   useEffect(() => {
     fetchProject();
-  }, [params.id]);
+  }, [resolvedParams.id]);
 
   const fetchProject = async () => {
     try {
       const { data, error } = await supabase
         .from("projects")
         .select("*")
-        .eq("id", params.id)
+        .eq("id", resolvedParams.id)
         .single();
 
       if (error) throw error;
@@ -51,11 +50,9 @@ export default function EditProject({ params }: { params: { id: string } }) {
           client_name: data.client_name || "",
           category: data.category,
           short_description: data.short_description,
-          full_description: data.full_description || "",
           technologies: data.technologies || [],
           project_url: data.project_url || "",
           github_url: data.github_url || "",
-          thumbnail_image: data.thumbnail_image || "",
           gallery_images: data.gallery_images || [],
           featured: data.featured,
           published: data.published,
@@ -237,19 +234,6 @@ export default function EditProject({ params }: { params: { id: string } }) {
                 />
                 {errors.short_description && <p className="text-sm text-red-500 mt-1">{errors.short_description}</p>}
               </div>
-
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">
-                  Full Description
-                </label>
-                <textarea
-                  value={formData.full_description || ""}
-                  onChange={(e) => setFormData({ ...formData, full_description: e.target.value })}
-                  rows={6}
-                  className="w-full px-4 py-2 rounded-lg border border-border bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/50 transition-colors resize-none"
-                  placeholder="Detailed project description"
-                />
-              </div>
             </div>
           </div>
 
@@ -330,23 +314,10 @@ export default function EditProject({ params }: { params: { id: string } }) {
             </div>
           </div>
 
-          {/* Images */}
+          {/* Gallery Images */}
           <div className="bg-surface border border-border rounded-lg p-6">
-            <h2 className="text-lg font-semibold text-text-primary mb-4">Images</h2>
+            <h2 className="text-lg font-semibold text-text-primary mb-4">Gallery Images (Optional)</h2>
             <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-text-secondary mb-2">
-                  Thumbnail Image URL
-                </label>
-                <input
-                  type="text"
-                  value={formData.thumbnail_image || ""}
-                  onChange={(e) => setFormData({ ...formData, thumbnail_image: e.target.value })}
-                  className="w-full px-4 py-2 rounded-lg border border-border bg-surface text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent/50 transition-colors"
-                  placeholder="https://example.com/image.jpg"
-                />
-              </div>
-
               <div>
                 <label className="block text-sm font-medium text-text-secondary mb-2">
                   Gallery Images (comma-separated URLs)

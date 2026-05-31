@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { supabase } from "@/lib/supabase";
@@ -8,7 +8,7 @@ import { testimonialSchema, type TestimonialInput } from "@/lib/validations";
 import { ArrowLeft, Save, Star } from "lucide-react";
 import Link from "next/link";
 
-export default function EditTestimonial({ params }: { params: { id: string } }) {
+export default function EditTestimonial({ params }: { params: Promise<{ id: string }> }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -23,17 +23,18 @@ export default function EditTestimonial({ params }: { params: { id: string } }) 
     featured: false,
     published: true,
   });
+  const resolvedParams = use(params);
 
   useEffect(() => {
     fetchTestimonial();
-  }, [params.id]);
+  }, [resolvedParams.id]);
 
   const fetchTestimonial = async () => {
     try {
       const { data, error } = await supabase
         .from("testimonials")
         .select("*")
-        .eq("id", params.id)
+        .eq("id", resolvedParams.id)
         .single();
 
       if (error) throw error;

@@ -34,7 +34,7 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-4 md:inset-8 lg:inset-12 z-50 flex flex-col bg-surface rounded-lg shadow-2xl overflow-hidden"
+            className="fixed inset-0 z-50 flex flex-col bg-surface"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-surface">
@@ -49,9 +49,9 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
             </div>
             
             {/* Browser Frame */}
-            <div className="flex-1 bg-surface relative">
+            <div className="flex-1 bg-surface relative flex flex-col">
               {/* Browser Header */}
-              <div className="flex items-center gap-2 px-4 py-3 bg-surface border-b border-border">
+              <div className="flex items-center gap-2 px-4 py-3 bg-surface border-b border-border flex-shrink-0">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-400" />
                   <div className="w-3 h-3 rounded-full bg-yellow-400" />
@@ -63,20 +63,13 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
               </div>
               
               {/* Website Preview Area */}
-              <div className="flex-1 bg-gradient-to-br from-accent/10 to-accent-bg/30 p-8 flex items-center justify-center">
-                <div className="w-full h-full bg-white rounded-lg shadow-lg p-8 flex flex-col items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-accent/20 rounded-full mx-auto mb-4 flex items-center justify-center">
-                      <span className="text-2xl">🌐</span>
-                    </div>
-                    <h4 className="text-xl font-bold text-text-primary mb-2">{project.title}</h4>
-                    <p className="text-sm text-text-secondary mb-4">Live Website Preview</p>
-                    <div className="h-2 bg-border/40 rounded w-full mb-2" />
-                    <div className="h-2 bg-border/40 rounded w-5/6 mb-2" />
-                    <div className="h-2 bg-border/40 rounded w-4/6 mb-4" />
-                    <div className="h-8 bg-accent rounded-full w-32 mx-auto" />
-                  </div>
-                </div>
+              <div className="flex-1 bg-white relative min-h-0">
+                <iframe
+                  src={project.liveUrl}
+                  title={project.title}
+                  className="absolute inset-0 w-full h-full border-0"
+                  sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                />
               </div>
             </div>
           </motion.div>

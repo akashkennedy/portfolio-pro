@@ -22,11 +22,11 @@ export default function ProjectsPage() {
     const categoryMatch =
       selectedCategory === "All" || project.category === selectedCategory;
     const typeMatch =
-      selectedType === "All" || project.type === selectedType;
+      selectedType === "All" || project.category === selectedType;
     const searchMatch =
       searchQuery === "" ||
       project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.description.toLowerCase().includes(searchQuery.toLowerCase());
+      project.short_description.toLowerCase().includes(searchQuery.toLowerCase());
     return categoryMatch && typeMatch && searchMatch;
   });
 
@@ -34,9 +34,9 @@ export default function ProjectsPage() {
   const sortedProjects = [...filteredProjects].sort((a, b) => {
     switch (sortBy) {
       case "newest":
-        return b.id - a.id;
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
       case "oldest":
-        return a.id - b.id;
+        return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
       case "featured":
         return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
       default:
@@ -44,8 +44,10 @@ export default function ProjectsPage() {
     }
   });
 
-  const handleProjectClick = (project: { title: string; liveUrl: string }) => {
-    setSelectedProject(project);
+  const handleProjectClick = (project: { title: string; project_url: string | null }) => {
+    if (project.project_url) {
+      setSelectedProject({ title: project.title, liveUrl: project.project_url });
+    }
   };
 
   const handleCloseModal = () => {

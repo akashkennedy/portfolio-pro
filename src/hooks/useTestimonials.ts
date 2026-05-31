@@ -1,48 +1,52 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Testimonial, staticTestimonials } from "@/data/testimonials";
+import { supabase } from "@/lib/supabase";
+
+export interface Testimonial {
+  id: string;
+  client_name: string;
+  client_company: string | null;
+  client_position: string | null;
+  client_photo: string | null;
+  testimonial_text: string;
+  rating: number;
+  featured: boolean;
+  published: boolean;
+  created_at: string;
+  updated_at: string;
+}
 
 export function useTestimonials() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>(staticTestimonials);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const refreshTestimonials = () => {
-    if (typeof window === "undefined") return;
+  const refreshTestimonials = async () => {
+    if (!supabase) {
+      console.warn("Supabase not configured. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local");
+      setLoading(false);
+      return;
+    }
 
     try {
-      const localData = localStorage.getItem("admin_testimonials");
-      if (localData) {
-        const parsed: Testimonial[] = JSON.parse(localData);
-        
-        const staticIds = new Set(staticTestimonials.map((t) => t.id));
-        const customTestimonials = parsed.filter((t) => !staticIds.has(t.id));
-        
-        const editedStaticTestimonials = staticTestimonials.map((staticTest) => {
-          const edited = parsed.find((t) => t.id === staticTest.id);
-          return edited || staticTest;
-        });
+      const { data, error } = await supabase
+        .from("testimonials")
+        .select("*")
+        .eq("published", true)
+        .order("created_at", { ascending: false });
 
-        setTestimonials([...editedStaticTestimonials, ...customTestimonials]);
-      } else {
-        setTestimonials(staticTestimonials);
-      }
-    } catch (e) {
-      console.error("Failed to parse admin_testimonials from localStorage", e);
-      setTestimonials(staticTestimonials);
+      if (error) throw error;
+      setTestimonials(data || []);
+    } catch (error) {
+      console.error("Error fetching testimonials:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     refreshTestimonials();
-
-    window.addEventListener("storage", refreshTestimonials);
-    window.addEventListener("testimonialsUpdated", refreshTestimonials);
-
-    return () => {
-      window.removeEventListener("storage", refreshTestimonials);
-      window.removeEventListener("testimonialsUpdated", refreshTestimonials);
-    };
   }, []);
 
-  return { testimonials, refreshTestimonials };
+  return { testimonials, loading, refreshTestimonials };
 }

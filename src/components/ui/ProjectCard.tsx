@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { FileText, Globe, Sparkles, Folder } from "lucide-react";
-import { Project } from "@/data/projects";
+import type { Project } from "@/hooks/useProjects";
 
 interface ProjectCardProps {
   project: Project;
@@ -39,9 +39,9 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
     >
       {/* Image / Icon Area */}
       <div className="relative h-[120px] w-full overflow-hidden bg-bg-surface-2 flex items-center justify-center">
-        {!imgError ? (
+        {!imgError && project.thumbnail_image ? (
           <Image
-            src={project.image}
+            src={project.thumbnail_image}
             alt={project.title}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -70,7 +70,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
           {project.title}
         </h3>
         <p className="text-xs font-normal leading-normal text-text-secondary line-clamp-2 mb-4 min-h-[36px]">
-          {project.description}
+          {project.short_description}
         </p>
         <div className="mt-auto">
           <span className="inline-flex items-center text-xs font-semibold text-accent hover:text-accent-dark transition-colors cursor-none">

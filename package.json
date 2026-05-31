@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.4.0",
+    "@supabase/auth-helpers-nextjs": "^0.15.0",
+    "@supabase/supabase-js": "^2.106.2",
     "@tsparticles/engine": "^4.1.0",
     "@tsparticles/react": "^4.1.0",
     "@tsparticles/slim": "^4.1.0",
@@ -20,7 +23,9 @@
     "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "typescript": "^6.0.3"
+    "react-hook-form": "^7.76.1",
+    "typescript": "^6.0.3",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

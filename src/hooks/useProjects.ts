@@ -1,52 +1,58 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Project, staticProjects } from "@/data/projects";
+import { supabase } from "@/lib/supabase";
+
+export interface Project {
+  id: string;
+  title: string;
+  slug: string;
+  client_name: string | null;
+  category: "Landing page" | "Business website" | "Redesign";
+  short_description: string;
+  full_description: string | null;
+  technologies: string[];
+  project_url: string | null;
+  github_url: string | null;
+  thumbnail_image: string | null;
+  gallery_images: string[];
+  featured: boolean;
+  published: boolean;
+  display_order: number;
+  created_at: string;
+  updated_at: string;
+}
 
 export function useProjects() {
-  const [projects, setProjects] = useState<Project[]>(staticProjects);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const refreshProjects = () => {
-    if (typeof window === "undefined") return;
-    
+  const refreshProjects = async () => {
+    if (!supabase) {
+      console.warn("Supabase not configured. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in .env.local");
+      setLoading(false);
+      return;
+    }
+
     try {
-      const localData = localStorage.getItem("admin_projects");
-      if (localData) {
-        const parsed: Project[] = JSON.parse(localData);
-        // Merge: Append all local projects that aren't already represented, or merge by ID.
-        // We'll keep static ones and append local additions, ensuring unique IDs.
-        const staticIds = new Set(staticProjects.map((p) => p.id));
-        const customProjects = parsed.filter((p) => !staticIds.has(p.id));
-        
-        // Also support edits by mapping over static projects if they were edited and stored in local storage
-        const editedStaticProjects = staticProjects.map((staticProj) => {
-          const edited = parsed.find((p) => p.id === staticProj.id);
-          return edited || staticProj;
-        });
+      const { data, error } = await supabase
+        .from("projects")
+        .select("*")
+        .eq("published", true)
+        .order("display_order", { ascending: true });
 
-        setProjects([...editedStaticProjects, ...customProjects]);
-      } else {
-        setProjects(staticProjects);
-      }
-    } catch (e) {
-      console.error("Failed to parse admin_projects from localStorage", e);
-      setProjects(staticProjects);
+      if (error) throw error;
+      setProjects(data || []);
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     refreshProjects();
-
-    // Listen to storage changes from admin panel
-    window.addEventListener("storage", refreshProjects);
-    // Custom event to support refresh within the same tab (e.g. from the admin dashboard)
-    window.addEventListener("projectsUpdated", refreshProjects);
-
-    return () => {
-      window.removeEventListener("storage", refreshProjects);
-      window.removeEventListener("projectsUpdated", refreshProjects);
-    };
   }, []);
 
-  return { projects, refreshProjects };
+  return { projects, loading, refreshProjects };
 }

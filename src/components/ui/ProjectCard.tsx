@@ -35,7 +35,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
       data-hover
     >
       {/* Image / Icon Area */}
-      <div className="relative h-[200px] w-full overflow-hidden bg-bg-surface-2 flex items-center justify-center">
+      <div className="relative h-[160px] sm:h-[180px] md:h-[200px] w-full overflow-hidden bg-bg-surface-2 flex items-center justify-center">
         {project.project_url ? (
           <iframe
             src={project.project_url}
@@ -53,18 +53,18 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
 
         {/* Featured Badge */}
         {project.featured && (
-          <span className="absolute top-2.5 right-2.5 rounded-full border border-accent/40 bg-accent-bg px-2 py-0.5 text-[8px] font-medium text-accent-muted">
+          <span className="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 rounded-full border border-accent/40 bg-accent-bg px-1.5 py-0.5 sm:px-2 sm:py-0.5 text-[8px] font-medium text-accent-muted">
             Featured
           </span>
         )}
       </div>
 
       {/* Card Body */}
-      <div className="flex flex-1 flex-col p-4">
-        <h3 className="text-sm font-semibold text-text-primary mb-2">
+      <div className="flex flex-1 flex-col p-3 sm:p-4">
+        <h3 className="text-xs sm:text-sm font-semibold text-text-primary mb-1.5 sm:mb-2">
           {project.title}
         </h3>
-        <p className="text-xs font-normal leading-normal text-text-secondary line-clamp-2">
+        <p className="text-[10px] sm:text-xs font-normal leading-normal text-text-secondary line-clamp-2">
           {project.short_description}
         </p>
       </div>

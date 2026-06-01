@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg",
   },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
   openGraph: {
     title: "Akash Kennedy — Web Designer",
     description: "Fast, professional websites for local businesses.",

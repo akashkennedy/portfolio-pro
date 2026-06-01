@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
@@ -14,6 +16,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,6 +54,7 @@ export default function Navbar() {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
+      setMobileMenuOpen(false);
     }
   };
 
@@ -66,21 +70,21 @@ export default function Navbar() {
         {/* Left: Logo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="text-lg font-semibold text-text-primary tracking-tight cursor-none"
+          className="text-base sm:text-lg font-semibold text-text-primary tracking-tight cursor-none"
           data-hover
         >
           ak.
         </button>
 
-        {/* Center: Navigation Links */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Center: Navigation Links - Desktop */}
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className={`relative py-1 text-sm font-normal transition-colors duration-200 cursor-none ${
+                className={`relative py-1 text-xs sm:text-sm font-normal transition-colors duration-200 cursor-none ${
                   isActive ? "text-text-primary font-semibold" : "text-text-muted hover:text-text-secondary"
                 }`}
                 data-hover
@@ -94,33 +98,63 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Right: Toggle & Button */}
-        <div className="flex items-center gap-4">
+        {/* Right: Toggle, Button & Mobile Menu */}
+        <div className="flex items-center gap-3 sm:gap-4">
           <ThemeToggle />
           <button
             onClick={() => scrollToSection("contact")}
-            className="rounded bg-accent px-4 py-2 text-xs font-semibold text-white hover:bg-accent-dark transition-colors cursor-none uppercase tracking-wider"
+            className="hidden sm:flex items-center gap-2 rounded bg-accent px-4 py-2 text-xs font-semibold text-white hover:bg-accent-dark transition-colors cursor-none uppercase tracking-wider"
             data-hover
           >
             get a quote
           </button>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 rounded-lg hover:bg-border/30 transition-colors cursor-none"
+            data-hover
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5 text-text-primary" /> : <Menu className="w-5 h-5 text-text-primary" />}
+          </button>
         </div>
       </div>
-      
-      {/* Mobile nav indicator bar for scroll targeting */}
-      <div className="md:hidden flex justify-center gap-5 border-t border-border/30 bg-surface/90 py-2 backdrop-blur-sm">
-        {navLinks.map((link) => (
-          <button
-            key={link.id}
-            onClick={() => scrollToSection(link.id)}
-            className={`text-[9px] transition-colors ${
-              activeSection === link.id ? "text-accent font-medium" : "text-text-muted"
-            }`}
-          >
-            {link.label}
-          </button>
-        ))}
-      </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.2 }}
+          className="md:hidden border-t border-border bg-surface/95 backdrop-blur-sm"
+        >
+          <div className="px-4 py-4 space-y-2">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  className={`w-full text-left py-3 px-4 rounded-lg transition-colors cursor-none ${
+                    isActive
+                      ? "bg-accent-bg text-accent font-semibold"
+                      : "text-text-muted hover:text-text-primary hover:bg-border/30"
+                  }`}
+                  data-hover
+                >
+                  {link.label}
+                </button>
+              );
+            })}
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="w-full mt-4 rounded bg-accent px-4 py-3 text-xs font-semibold text-white hover:bg-accent-dark transition-colors cursor-none uppercase tracking-wider"
+              data-hover
+            >
+              get a quote
+            </button>
+          </div>
+        </motion.div>
+      )}
     </nav>
   );
 }

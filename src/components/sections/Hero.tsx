@@ -134,12 +134,12 @@ export default function Hero() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="absolute -top-4 -left-8 bg-surface border border-border rounded-lg px-4 py-3 shadow-lg"
+              className="absolute -top-4 -left-4 lg:-left-8 bg-surface border border-border rounded-lg px-3 py-2 lg:px-4 lg:py-3 shadow-lg"
               whileHover={{ scale: 1.05 }}
             >
               <div className="flex items-center gap-2">
-                <Smartphone className="w-4 h-4 text-accent" />
-                <span className="text-xs font-medium text-text-primary">Mobile Optimized</span>
+                <Smartphone className="w-3 h-3 lg:w-4 lg:h-4 text-accent" />
+                <span className="text-[10px] lg:text-xs font-medium text-text-primary">Mobile Optimized</span>
               </div>
             </motion.div>
 
@@ -147,12 +147,12 @@ export default function Hero() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.9 }}
-              className="absolute -top-4 -right-8 bg-surface border border-border rounded-lg px-4 py-3 shadow-lg"
+              className="absolute -top-4 -right-4 lg:-right-8 bg-surface border border-border rounded-lg px-3 py-2 lg:px-4 lg:py-3 shadow-lg"
               whileHover={{ scale: 1.05 }}
             >
               <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-accent" />
-                <span className="text-xs font-medium text-text-primary">Fast Loading</span>
+                <Zap className="w-3 h-3 lg:w-4 lg:h-4 text-accent" />
+                <span className="text-[10px] lg:text-xs font-medium text-text-primary">Fast Loading</span>
               </div>
             </motion.div>
 
@@ -160,12 +160,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.0 }}
-              className="absolute -bottom-4 -left-4 bg-surface border border-border rounded-lg px-4 py-3 shadow-lg"
+              className="absolute -bottom-4 -left-2 lg:-left-4 bg-surface border border-border rounded-lg px-3 py-2 lg:px-4 lg:py-3 shadow-lg"
               whileHover={{ scale: 1.05 }}
             >
               <div className="flex items-center gap-2">
-                <Target className="w-4 h-4 text-accent" />
-                <span className="text-xs font-medium text-text-primary">Lead Generation</span>
+                <Target className="w-3 h-3 lg:w-4 lg:h-4 text-accent" />
+                <span className="text-[10px] lg:text-xs font-medium text-text-primary">Lead Generation</span>
               </div>
             </motion.div>
 
@@ -173,12 +173,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.1 }}
-              className="absolute -bottom-4 -right-4 bg-surface border border-border rounded-lg px-4 py-3 shadow-lg"
+              className="absolute -bottom-4 -right-2 lg:-right-4 bg-surface border border-border rounded-lg px-3 py-2 lg:px-4 lg:py-3 shadow-lg"
               whileHover={{ scale: 1.05 }}
             >
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-accent" />
-                <span className="text-xs font-medium text-text-primary">Modern Design</span>
+                <Sparkles className="w-3 h-3 lg:w-4 lg:h-4 text-accent" />
+                <span className="text-[10px] lg:text-xs font-medium text-text-primary">Modern Design</span>
               </div>
             </motion.div>
           </motion.div>

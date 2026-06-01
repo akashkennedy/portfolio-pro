@@ -37,28 +37,28 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
             className="fixed inset-0 z-50 flex flex-col bg-surface"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-surface">
-              <h3 className="text-lg font-semibold text-text-primary">{project.title}</h3>
+            <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-border bg-surface">
+              <h3 className="text-base sm:text-lg font-semibold text-text-primary truncate pr-4">{project.title}</h3>
               <button
                 onClick={onClose}
                 className="p-2 rounded-lg hover:bg-border/30 transition-colors cursor-none"
                 data-hover
               >
-                <X className="w-5 h-5 text-text-secondary" />
+                <X className="w-4 h-4 sm:w-5 sm:h-5 text-text-secondary" />
               </button>
             </div>
-            
+
             {/* Browser Frame */}
             <div className="flex-1 bg-surface relative flex flex-col">
               {/* Browser Header */}
-              <div className="flex items-center gap-2 px-4 py-3 bg-surface border-b border-border flex-shrink-0">
+              <div className="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-surface border-b border-border flex-shrink-0">
                 <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-400" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                  <div className="w-3 h-3 rounded-full bg-green-400" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-400" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-400" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-400" />
                 </div>
-                <div className="flex-1 mx-4">
-                  <div className="h-2 bg-border rounded-full max-w-xs mx-auto" />
+                <div className="flex-1 mx-2 sm:mx-4">
+                  <div className="h-1.5 sm:h-2 bg-border rounded-full max-w-[200px] sm:max-w-xs mx-auto" />
                 </div>
               </div>
               

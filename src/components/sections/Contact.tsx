@@ -21,16 +21,16 @@ export default function Contact() {
         </p>
 
         {/* Contact Links Row */}
-        <div className="flex flex-wrap items-center justify-center gap-3.5 max-w-md mx-auto">
+        <div className="flex flex-wrap items-center justify-center gap-3 max-w-2xl mx-auto">
           {/* WhatsApp Outline Button */}
           <a
             href="https://wa.me/919843491564"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded border border-border bg-transparent px-5 py-3 text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
+            className="flex items-center gap-2 rounded border border-border bg-transparent px-4 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
             data-hover
           >
-            <MessageCircle className="h-4 w-4 text-accent" />
+            <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent" />
             WhatsApp
           </a>
 
@@ -39,10 +39,10 @@ export default function Contact() {
             href="https://instagram.com/axash_k"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded border border-border bg-transparent px-5 py-3 text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
+            className="flex items-center gap-2 rounded border border-border bg-transparent px-4 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
             data-hover
           >
-            <Camera className="h-4 w-4 text-accent" />
+            <Camera className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent" />
             Instagram
           </a>
 
@@ -51,20 +51,20 @@ export default function Contact() {
             href="https://linkedin.com/in/akashkennedy"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded border border-border bg-transparent px-5 py-3 text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
+            className="flex items-center gap-2 rounded border border-border bg-transparent px-4 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
             data-hover
           >
-            <Link className="h-4 w-4 text-accent" />
+            <Link className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent" />
             LinkedIn
           </a>
 
           {/* Email Me Button (Filled) */}
           <a
             href="mailto:akashkennedy1@gmail.com"
-            className="flex items-center gap-2 rounded bg-accent px-6 py-3 text-sm font-semibold text-white hover:bg-accent-dark transition-all cursor-none shadow-sm"
+            className="flex items-center gap-2 rounded bg-accent px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white hover:bg-accent-dark transition-all cursor-none shadow-sm"
             data-hover
           >
-            <Mail className="h-4 w-4" />
+            <Mail className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             Email me
           </a>
         </div>

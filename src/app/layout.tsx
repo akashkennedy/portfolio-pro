@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Akash Kennedy — Web Designer for Local Businesses",
   description: "I build fast, professional websites for local businesses. Landing pages, business websites, and redesigns. Get in touch today.",
   keywords: ["web designer", "website for business", "landing page", "local business website"],
+  icons: {
+    icon: "/favicon.svg",
+  },
   openGraph: {
     title: "Akash Kennedy — Web Designer",
     description: "Fast, professional websites for local businesses.",

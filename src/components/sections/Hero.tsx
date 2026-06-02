@@ -1,10 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Smartphone, Zap, Target, Sparkles } from "lucide-react";
+import ContactFormModal from "../ui/ContactFormModal";
 
 export default function Hero() {
+  const [contactFormOpen, setContactFormOpen] = useState(false);
+
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -56,7 +59,7 @@ export default function Hero() {
             className="flex flex-wrap gap-3.5"
           >
             <motion.button
-              onClick={() => scrollToSection("contact")}
+              onClick={() => setContactFormOpen(true)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="rounded bg-accent px-6 py-3 text-sm font-semibold text-white hover:bg-accent-dark transition-all cursor-none shadow-sm"
@@ -184,6 +187,9 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Contact Form Modal */}
+      <ContactFormModal isOpen={contactFormOpen} onClose={() => setContactFormOpen(false)} />
     </section>
   );
 }

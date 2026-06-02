@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import ContactFormModal from "./ContactFormModal";
 
 const navLinks = [
   { id: "home", label: "Home" },
@@ -17,6 +18,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [contactFormOpen, setContactFormOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -102,11 +104,11 @@ export default function Navbar() {
         <div className="flex items-center gap-3 sm:gap-4">
           <ThemeToggle />
           <button
-            onClick={() => scrollToSection("contact")}
+            onClick={() => setContactFormOpen(true)}
             className="hidden sm:flex items-center gap-2 rounded bg-accent px-4 py-2 text-xs font-semibold text-white hover:bg-accent-dark transition-colors cursor-none uppercase tracking-wider"
             data-hover
           >
-            get a quote
+            Get a Website
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -146,15 +148,21 @@ export default function Navbar() {
               );
             })}
             <button
-              onClick={() => scrollToSection("contact")}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setContactFormOpen(true);
+              }}
               className="w-full mt-4 rounded bg-accent px-4 py-3 text-xs font-semibold text-white hover:bg-accent-dark transition-colors cursor-none uppercase tracking-wider"
               data-hover
             >
-              get a quote
+              Get a Website
             </button>
           </div>
         </motion.div>
       )}
+
+      {/* Contact Form Modal */}
+      <ContactFormModal isOpen={contactFormOpen} onClose={() => setContactFormOpen(false)} />
     </nav>
   );
 }

@@ -5,6 +5,7 @@ import Cursor from "@/components/cursor/Cursor";
 import Background from "@/components/background/Background";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://akashkennedy.xyz"),
   title: "Akash Kennedy — Web Designer for Local Businesses",
   description: "I build fast, professional websites for local businesses. Landing pages, business websites, and redesigns. Get in touch today.",
   keywords: ["web designer", "website for business", "landing page", "local business website"],
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Akash Kennedy — Web Designer",
     description: "Fast, professional websites for local businesses.",
-    url: "https://akashkennedy.vercel.app",
+    url: "https://akashkennedy.xyz",
     type: "website",
   }
 };

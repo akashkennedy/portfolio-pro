@@ -71,7 +71,7 @@ export default function Hero() {
               onClick={() => scrollToSection("work")}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="rounded border border-border bg-transparent px-6 py-3 text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
+              className="rounded border-2 border-border/60 bg-transparent px-6 py-3 text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/50 transition-all cursor-none"
               data-hover
             >
               View My Work
@@ -137,7 +137,7 @@ export default function Hero() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="absolute -top-4 -left-4 lg:-left-8 bg-surface border border-border rounded-lg px-3 py-2 lg:px-4 lg:py-3 shadow-lg"
+              className="absolute -top-4 -left-4 lg:-left-8 bg-surface/95 border-2 border-accent/40 rounded-lg px-3 py-2 lg:px-4 lg:py-3 shadow-lg backdrop-blur-sm"
               whileHover={{ scale: 1.05 }}
             >
               <div className="flex items-center gap-2">
@@ -150,7 +150,7 @@ export default function Hero() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.9 }}
-              className="absolute -top-4 -right-4 lg:-right-8 bg-surface border border-border rounded-lg px-3 py-2 lg:px-4 lg:py-3 shadow-lg"
+              className="absolute -top-4 -right-4 lg:-right-8 bg-surface/95 border-2 border-accent/40 rounded-lg px-3 py-2 lg:px-4 lg:py-3 shadow-lg backdrop-blur-sm"
               whileHover={{ scale: 1.05 }}
             >
               <div className="flex items-center gap-2">
@@ -163,7 +163,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.0 }}
-              className="absolute -bottom-4 -left-2 lg:-left-4 bg-surface border border-border rounded-lg px-3 py-2 lg:px-4 lg:py-3 shadow-lg"
+              className="absolute -bottom-4 -left-2 lg:-left-4 bg-surface/95 border-2 border-accent/40 rounded-lg px-3 py-2 lg:px-4 lg:py-3 shadow-lg backdrop-blur-sm"
               whileHover={{ scale: 1.05 }}
             >
               <div className="flex items-center gap-2">
@@ -176,7 +176,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.1 }}
-              className="absolute -bottom-4 -right-2 lg:-right-4 bg-surface border border-border rounded-lg px-3 py-2 lg:px-4 lg:py-3 shadow-lg"
+              className="absolute -bottom-4 -right-2 lg:-right-4 bg-surface/95 border-2 border-accent/40 rounded-lg px-3 py-2 lg:px-4 lg:py-3 shadow-lg backdrop-blur-sm"
               whileHover={{ scale: 1.05 }}
             >
               <div className="flex items-center gap-2">

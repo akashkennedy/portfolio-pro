@@ -24,9 +24,17 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
     }
   };
 
+  const handleCardClick = () => {
+    if (project.project_url) {
+      window.open(project.project_url, '_blank');
+    } else if (onClick) {
+      onClick();
+    }
+  };
+
   return (
     <div
-      onClick={onClick}
+      onClick={handleCardClick}
       className={`relative flex flex-col overflow-hidden rounded-lg bg-surface transition-all duration-300 hover:-translate-y-0.5 cursor-pointer ${
         project.featured
           ? "border border-accent-muted/40 shadow-sm"
@@ -64,9 +72,14 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
         <h3 className="text-xs sm:text-sm font-semibold text-text-primary mb-1.5 sm:mb-2">
           {project.title}
         </h3>
-        <p className="text-[10px] sm:text-xs font-normal leading-normal text-text-secondary line-clamp-2">
+        <p className="text-[10px] sm:text-xs font-normal leading-normal text-text-secondary line-clamp-2 mb-2">
           {project.short_description}
         </p>
+        {project.project_url && (
+          <div className="flex items-center gap-1 text-accent text-[10px] sm:text-xs font-medium">
+            View Live <span className="text-accent">→</span>
+          </div>
+        )}
       </div>
     </div>
   );

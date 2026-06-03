@@ -32,9 +32,8 @@ export default function Testimonials() {
     <section id="testimonials" className="w-full py-16 border-t border-border/10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         {/* Title */}
-        <div className="flex items-center gap-3 mb-10">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-          <h2 className="text-2xl font-semibold text-text-primary">
+        <div className="mb-10">
+          <h2 className="text-2xl font-semibold text-text-primary border-l-4 border-accent pl-4">
             What Clients Say
           </h2>
         </div>

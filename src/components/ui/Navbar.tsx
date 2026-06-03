@@ -9,6 +9,8 @@ import ContactFormModal from "./ContactFormModal";
 const navLinks = [
   { id: "home", label: "Home" },
   { id: "services", label: "Services" },
+  { id: "pricing", label: "Pricing" },
+  { id: "how-it-works", label: "How It Works" },
   { id: "work", label: "Work" },
   { id: "testimonials", label: "Testimonials" },
   { id: "contact", label: "Contact" },

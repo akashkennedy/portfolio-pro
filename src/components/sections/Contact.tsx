@@ -29,6 +29,7 @@ export default function Contact() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 rounded border border-border bg-transparent px-4 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
             data-hover
+            aria-label="Contact on WhatsApp"
           >
             <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent" />
             WhatsApp
@@ -41,6 +42,7 @@ export default function Contact() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 rounded border border-border bg-transparent px-4 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
             data-hover
+            aria-label="View Instagram profile"
           >
             <Camera className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent" />
             Instagram
@@ -53,6 +55,7 @@ export default function Contact() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 rounded border border-border bg-transparent px-4 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-semibold text-text-secondary hover:text-text-primary hover:border-text-secondary/30 transition-all cursor-none"
             data-hover
+            aria-label="View LinkedIn profile"
           >
             <Link className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent" />
             LinkedIn
@@ -63,6 +66,7 @@ export default function Contact() {
             href="mailto:akashkennedy1@gmail.com"
             className="flex items-center gap-2 rounded bg-accent px-5 py-2.5 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold text-white hover:bg-accent-dark transition-all cursor-none shadow-sm"
             data-hover
+            aria-label="Send email"
           >
             <Mail className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
             Email me

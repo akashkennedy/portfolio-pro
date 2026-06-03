@@ -50,10 +50,8 @@ export default function Services() {
     <section id="services" className="w-full py-16 border-t border-border/10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         {/* Section Heading */}
-        <div className="flex items-center gap-3 mb-10">
-          {/* Small accent dot/line decoration */}
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-          <h2 className="text-2xl font-semibold text-text-primary">
+        <div className="mb-10">
+          <h2 className="text-2xl font-semibold text-text-primary border-l-4 border-accent pl-4">
             What I Offer
           </h2>
         </div>

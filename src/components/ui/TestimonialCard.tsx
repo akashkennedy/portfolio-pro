@@ -8,7 +8,11 @@ interface TestimonialCardProps {
 }
 
 export default function TestimonialCard({ testimonial }: TestimonialCardProps) {
-  const initials = testimonial.client_name
+  // Fallback for empty names
+  const displayName = testimonial.client_name || "Gym Owner";
+  const displayCompany = testimonial.client_company || "Chennai";
+
+  const initials = displayName
     .split(" ")
     .map((n) => n[0])
     .join("")
@@ -37,14 +41,14 @@ export default function TestimonialCard({ testimonial }: TestimonialCardProps) {
           <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent-bg text-[9px] font-medium text-accent-muted border border-accent/10">
             {initials}
           </div>
-          
+
           {/* Name & Business */}
           <div className="flex flex-col">
             <span className="text-sm font-semibold text-text-primary leading-tight">
-              {testimonial.client_name}
+              {displayName}
             </span>
             <span className="text-xs font-normal text-text-muted leading-tight">
-              {testimonial.client_company || ""}
+              {displayCompany}
             </span>
           </div>
         </div>

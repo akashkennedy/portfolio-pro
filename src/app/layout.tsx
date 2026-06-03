@@ -10,7 +10,10 @@ export const metadata: Metadata = {
   description: "I build fast, professional websites for local businesses. Landing pages, business websites, and redesigns. Get in touch today.",
   keywords: ["web designer", "website for business", "landing page", "local business website"],
   icons: {
-    icon: "/favicon.svg",
+    icon: [
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+    ],
+    apple: "/apple-icon.png",
   },
   viewport: {
     width: "device-width",

@@ -1,12 +1,36 @@
 import Navbar from "@/components/ui/Navbar";
 import Hero from "@/components/sections/Hero";
-import Services from "@/components/sections/Services";
-import Pricing from "@/components/sections/Pricing";
-import HowItWorks from "@/components/sections/HowItWorks";
-import Work from "@/components/sections/Work";
-import Testimonials from "@/components/sections/Testimonials";
-import Contact from "@/components/sections/Contact";
-import Chatbot from "@/components/ui/Chatbot";
+import dynamic from "next/dynamic";
+
+// Dynamically import below-fold sections to reduce initial JavaScript bundle
+const Services = dynamic(() => import("@/components/sections/Services"), {
+  loading: () => <div className="w-full py-16" />,
+});
+
+const Pricing = dynamic(() => import("@/components/sections/Pricing"), {
+  loading: () => <div className="w-full py-16" />,
+});
+
+const HowItWorks = dynamic(() => import("@/components/sections/HowItWorks"), {
+  loading: () => <div className="w-full py-16" />,
+});
+
+const Work = dynamic(() => import("@/components/sections/Work"), {
+  loading: () => <div className="w-full py-16" />,
+});
+
+const Testimonials = dynamic(() => import("@/components/sections/Testimonials"), {
+  loading: () => <div className="w-full py-16" />,
+});
+
+const Contact = dynamic(() => import("@/components/sections/Contact"), {
+  loading: () => <div className="w-full py-16" />,
+});
+
+const Chatbot = dynamic(() => import("@/components/ui/Chatbot"), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function Home() {
   return (

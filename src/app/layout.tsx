@@ -1,8 +1,18 @@
 import { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
-import Cursor from "@/components/cursor/Cursor";
-import Background from "@/components/background/Background";
+import dynamic from "next/dynamic";
+
+// Dynamically import non-critical components to reduce initial JavaScript bundle
+const Cursor = dynamic(() => import("@/components/cursor/Cursor"), {
+  ssr: false,
+  loading: () => null,
+});
+
+const Background = dynamic(() => import("@/components/background/Background"), {
+  ssr: false,
+  loading: () => null,
+});
 
 export const metadata: Metadata = {
   verification: {

@@ -22,7 +22,7 @@ export default function Cursor() {
     // Check if device is touch or has no fine pointer
     const mediaQuery = window.matchMedia("(pointer: coarse)");
     setIsMobile(mediaQuery.matches);
-    
+
     const handleMediaChange = (e: MediaQueryListEvent) => {
       setIsMobile(e.matches);
     };
@@ -33,8 +33,8 @@ export default function Cursor() {
     // Track mouse movement
     const handleMouseMove = (e: MouseEvent) => {
       mousePos.current = { x: e.clientX, y: e.clientY };
-      
-      // Update dot position instantly
+
+      // Update dot position instantly (GPU-accelerated)
       if (dotRef.current) {
         dotRef.current.style.transform = `translate3d(${e.clientX - 3}px, ${e.clientY - 3}px, 0)`;
       }
@@ -54,29 +54,40 @@ export default function Cursor() {
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    
+
     // Set up a MutationObserver to watch for dynamically added components (like admin additions)
     const observer = new MutationObserver(() => {
       setupEventListeners();
     });
     observer.observe(document.body, { childList: true, subtree: true });
-    
+
     // Initial setup
     setupEventListeners();
 
-    // Lerp loop for the ring
+    // Lerp loop for the ring - avoid forced reflow by batching reads and writes
     let animationFrameId: number;
     const lerpFactor = 0.12; // ~80ms lag/easing delay
 
     const updateRing = () => {
-      // Linear interpolation: current = current + (target - current) * factor
-      ringPos.current.x += (mousePos.current.x - ringPos.current.x) * lerpFactor;
-      ringPos.current.y += (mousePos.current.y - ringPos.current.y) * lerpFactor;
+      // Read operations first
+      const targetX = mousePos.current.x;
+      const targetY = mousePos.current.y;
+      const currentX = ringPos.current.x;
+      const currentY = ringPos.current.y;
 
+      // Calculate new positions
+      const newX = currentX + (targetX - currentX) * lerpFactor;
+      const newY = currentY + (targetY - currentY) * lerpFactor;
+
+      // Update refs (write operation)
+      ringPos.current.x = newX;
+      ringPos.current.y = newY;
+
+      // Write to DOM in a single batch (GPU-accelerated)
       if (ringRef.current) {
         // Offset for centering: ring width/height is dynamic (28px or 44px)
         const size = isHovered ? 44 : 28;
-        ringRef.current.style.transform = `translate3d(${ringPos.current.x - size / 2}px, ${ringPos.current.y - size / 2}px, 0)`;
+        ringRef.current.style.transform = `translate3d(${newX - size / 2}px, ${newY - size / 2}px, 0)`;
       }
 
       animationFrameId = requestAnimationFrame(updateRing);
@@ -89,7 +100,7 @@ export default function Cursor() {
       mediaQuery.removeEventListener("change", handleMediaChange);
       observer.disconnect();
       cancelAnimationFrame(animationFrameId);
-      
+
       const targets = document.querySelectorAll("[data-hover], button, a, input, textarea, select");
       targets.forEach((target) => {
         target.removeEventListener("mouseenter", handleMouseEnter);

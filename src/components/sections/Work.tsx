@@ -4,8 +4,14 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useProjects } from "@/hooks/useProjects";
 import ProjectCard from "../ui/ProjectCard";
-import ProjectModal from "../ui/ProjectModal";
+import dynamic from "next/dynamic";
 import Link from "next/link";
+
+// Dynamically import modal to reduce initial bundle size
+const ProjectModal = dynamic(() => import("../ui/ProjectModal"), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function Work() {
   const { projects, loading } = useProjects();

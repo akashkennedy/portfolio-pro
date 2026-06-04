@@ -4,7 +4,13 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
-import ContactFormModal from "./ContactFormModal";
+import dynamic from "next/dynamic";
+
+// Dynamically import modal to reduce initial bundle size
+const ContactFormModal = dynamic(() => import("./ContactFormModal"), {
+  ssr: false,
+  loading: () => null,
+});
 
 const navLinks = [
   { id: "home", label: "Home" },

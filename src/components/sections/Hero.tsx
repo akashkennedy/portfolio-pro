@@ -3,7 +3,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Smartphone, Zap, Target, Sparkles } from "lucide-react";
-import ContactFormModal from "../ui/ContactFormModal";
+import dynamic from "next/dynamic";
+
+// Dynamically import modal to reduce initial bundle size
+const ContactFormModal = dynamic(() => import("../ui/ContactFormModal"), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function Hero() {
   const [contactFormOpen, setContactFormOpen] = useState(false);

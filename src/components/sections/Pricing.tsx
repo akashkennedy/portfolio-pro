@@ -3,7 +3,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, ArrowRight } from "lucide-react";
-import ContactFormModal from "../ui/ContactFormModal";
+import dynamic from "next/dynamic";
+
+// Dynamically import modal to reduce initial bundle size
+const ContactFormModal = dynamic(() => import("../ui/ContactFormModal"), {
+  ssr: false,
+  loading: () => null,
+});
 
 const pricingTiers = [
   {

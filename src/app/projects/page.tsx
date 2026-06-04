@@ -5,9 +5,15 @@ import { motion } from "framer-motion";
 import { useProjects } from "@/hooks/useProjects";
 import FilterBar from "@/components/ui/FilterBar";
 import ProjectCard from "@/components/ui/ProjectCard";
-import ProjectModal from "@/components/ui/ProjectModal";
+import dynamic from "next/dynamic";
 import { Search, ArrowLeft } from "lucide-react";
 import Link from "next/link";
+
+// Dynamically import modal to reduce initial bundle size
+const ProjectModal = dynamic(() => import("@/components/ui/ProjectModal"), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function ProjectsPage() {
   const { projects } = useProjects();

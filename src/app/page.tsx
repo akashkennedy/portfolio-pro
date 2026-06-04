@@ -28,7 +28,6 @@ const Contact = dynamic(() => import("@/components/sections/Contact"), {
 });
 
 const Chatbot = dynamic(() => import("@/components/ui/Chatbot"), {
-  ssr: false,
   loading: () => null,
 });
 

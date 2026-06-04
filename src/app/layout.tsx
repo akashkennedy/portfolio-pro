@@ -5,12 +5,10 @@ import dynamic from "next/dynamic";
 
 // Dynamically import non-critical components to reduce initial JavaScript bundle
 const Cursor = dynamic(() => import("@/components/cursor/Cursor"), {
-  ssr: false,
   loading: () => null,
 });
 
 const Background = dynamic(() => import("@/components/background/Background"), {
-  ssr: false,
   loading: () => null,
 });
 

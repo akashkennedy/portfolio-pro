@@ -6,7 +6,7 @@ import HowItWorks from "@/components/sections/HowItWorks";
 import Work from "@/components/sections/Work";
 import Testimonials from "@/components/sections/Testimonials";
 import Contact from "@/components/sections/Contact";
-import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
+import Chatbot from "@/components/ui/Chatbot";
 
 export default function Home() {
   return (
@@ -38,8 +38,8 @@ export default function Home() {
         <Contact />
       </main>
 
-      {/* Floating WhatsApp Button */}
-      <FloatingWhatsApp />
+      {/* Chatbot */}
+      <Chatbot />
     </>
   );
 }

@@ -65,19 +65,25 @@ body {
   }
 }
 
-/* Base style resets and scrollbar styling */
+/* Hide scrollbars */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 0px;
+  background: transparent;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-base);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-muted);
+  background: transparent;
+}
+
+/* Hide scrollbar for Firefox */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 /* Simple shake animation for incorrect password in admin dashboard */

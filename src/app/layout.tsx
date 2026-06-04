@@ -5,6 +5,9 @@ import Cursor from "@/components/cursor/Cursor";
 import Background from "@/components/background/Background";
 
 export const metadata: Metadata = {
+  verification: {
+  google: "Y57YwUGDe85C1x8CLiYH13iN-EYR-UXukBZIYNyJ1mo",
+},
   metadataBase: new URL("https://akashkennedy.xyz"),
   title: "Akash Kennedy — Web Designer for Local Businesses",
   description: "I build fast, professional websites for local businesses. Landing pages, business websites, and redesigns. Get in touch today.",
@@ -15,17 +18,18 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-icon.png",
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-  },
   openGraph: {
     title: "Akash Kennedy — Web Designer",
     description: "Fast, professional websites for local businesses.",
     url: "https://akashkennedy.xyz",
     type: "website",
   }
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({

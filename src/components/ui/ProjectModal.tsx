@@ -63,12 +63,13 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
               </div>
               
               {/* Website Preview Area */}
-              <div className="flex-1 bg-white relative min-h-0">
+              <div className="flex-1 bg-white relative min-h-0 overflow-hidden">
                 <iframe
                   src={project.liveUrl}
                   title={project.title}
                   className="absolute inset-0 w-full h-full border-0"
                   sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                  style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 />
               </div>
             </div>
